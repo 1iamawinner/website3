@@ -1,137 +1,62 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>R.Shriya | Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=The+Seasons&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --beige: #f5f5dc;
-      --navy-blue: #000080;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Times New Roman', serif;
-      background-color: var(--beige);
-      color: var(--navy-blue);
-      font-size: 14px;
-    }
-
-    header {
-      background-color: var(--navy-blue);
-      color: var(--beige);
-      padding: 2rem;
-      text-align: center;
-    }
-
-    header h1 {
-      font-family: 'The Seasons', serif;
-      font-size: 18px;
-      margin: 0;
-    }
-
-    header p {
-      font-size: 16px;
-      margin-top: 1rem;
-    }
-
-    nav {
-      background-color: var(--navy-blue);
-      text-align: center;
-      padding: 1rem 0;
-    }
-
-    nav a {
-      color: var(--beige);
-      margin: 0 1rem;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    section {
-      padding: 2rem;
-      border-bottom: 1px solid var(--navy-blue);
-    }
-
-    h2 {
-      font-family: 'The Seasons', serif;
-      font-size: 18px;
-      margin-bottom: 1rem;
-      color: var(--navy-blue);
-    }
-
-    .project, .paper {
-      margin-bottom: 1.5rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background-color: var(--navy-blue);
-      color: var(--beige);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>R.Shriya | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .page {
+            height: 100vh;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .first-page {
+            background-image: url('cfd2e5b2-8d3d-44d9-85c4-6fc3bc84c3b5.jpg');
+        }
+        .other-page {
+            background-image: url('15bd5afa-bbff-40da-80fb-05019743003c.jpg');
+        }
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 60px;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px #000000;
+        }
+        p {
+            font-size: 24px;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px #000000;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>R.Shriya</h1>
-    <p>Aspiring Electronics Engineer | Passionate About Learning & Growing | Exploring Arduino, Sensors & Embedded Systems</p>
-  </header>
-
-  <nav>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#publications">Publications</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <section id="about">
-    <h2>About Me</h2>
-    <p>Write a short bio here about your journey, interests in electronics, and academic focus.</p>
-  </section>
-
-  <section id="skills">
-    <h2>Skills</h2>
-    <ul>
-      <li>Arduino</li>
-      <li>C/C++</li>
-      <li>Python</li>
-      <li>Sensors & Embedded Systems</li>
-      <li>Project Prototyping</li>
-    </ul>
-  </section>
-
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="project">
-      <h3>Self-Defense Jacket</h3>
-      <p>A wearable safety device that delivers an electric shock to attackers using a push-button mechanism.</p>
+    <div class="page first-page">
+        <h1>R.Shriya</h1>
+        <p>Aspiring Electronics Engineer</p>
     </div>
-    <div class="project">
-      <h3>Flexible Solar Sheet</h3>
-      <p>Developed plastic sheets integrated with solar cells designed to withstand folding and rough use.</p>
+
+    <div class="page other-page">
+        <h1>Projects</h1>
+        <p>Arduino | Sensors | Embedded Systems</p>
     </div>
-  </section>
 
-  <section id="publications">
-    <h2>Publications</h2>
-    <div class="paper">
-      <h3>Paper Title</h3>
-      <p>Short abstract or summary. [Link to paper if available]</p>
+    <div class="page other-page">
+        <h1>Skills</h1>
+        <p>Problem Solving | Innovation | Growth</p>
     </div>
-  </section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>You can reach me at: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 R.Shriya. All rights reserved.</p>
-  </footer>
+    <div class="page other-page">
+        <h1>Contact</h1>
+        <p>shriya@example.com</p>
+    </div>
 </body>
 </html>
