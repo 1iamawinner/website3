@@ -1,0 +1,55 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Hero/Header */
+.hero {
+    padding: 80px 20px;
+    text-align: center;
+    background-color: #ffffff;
+    color: #111111;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+/* Sections */
+.section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.section h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #222222;
+    margin-bottom: 20px;
+}
+
+.section p {
+    font-size: 1.2rem;
+    color: #555555;
+    margin-top: 10px;
+}
+
+/* Footer */
+footer {
+    padding: 30px 20px;
+    text-align: center;
+    font-size: 1rem;
+    color: #777777;
+    background-color: #ffffff;
+}
