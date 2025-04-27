@@ -8,50 +8,53 @@
 /* Base styling */
 body {
     font-family: 'Poppins', sans-serif;
-    /* Light blue gradient background */
-    background: linear-gradient(180deg, #e0f2ff 0%, #ffffff 100%);
+    background: linear-gradient(180deg, #d6f0ff 0%, #ffffff 100%);
     color: #333;
-    line-height: 1.6;
     min-height: 100vh;
+}
+
+/* Container to center everything */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
 }
 
 /* Hero/Header */
 .hero {
-    padding: 80px 20px;
     text-align: center;
-    background: transparent; /* Keep background transparent to show gradient */
-    color: #111111;
+    margin-bottom: 60px;
 }
 
 .hero h1 {
     font-size: 3rem;
     font-weight: 700;
+    color: #111;
 }
 
 /* Sections */
 .section {
-    padding: 60px 20px;
+    margin-bottom: 50px;
     text-align: center;
 }
 
 .section h2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 700;
-    color: #222222;
+    color: #111;
     margin-bottom: 20px;
 }
 
 .section p {
     font-size: 1.2rem;
-    color: #555555;
-    margin-top: 10px;
+    color: #555;
+    line-height: 1.5;
 }
 
 /* Footer */
 footer {
-    padding: 30px 20px;
     text-align: center;
+    margin-top: 60px;
     font-size: 1rem;
-    color: #777777;
-    background: transparent;
+    color: #777;
 }
