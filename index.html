@@ -20,21 +20,36 @@
             scroll-behavior: smooth;
         }
 
-        /* --- Animation Styles --- */
-
-        /* Base state for elements that will animate */
-        .animate-on-scroll {
+        /* --- Flowy Animation Styles --- */
+        /* Common class for elements that will animate on scroll */
+        .scroll-animate {
             opacity: 0;
-            transform: translateY(30px); /* Start slightly lower */
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-        /* Visible state (added by JS) */
-        .animate-on-scroll.is-visible {
-            opacity: 1;
-            transform: translateY(0);
+            transition: opacity 1s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+            /* Longer duration, custom cubic-bezier for flowy effect */
         }
 
-        /* Scrolling Text Animation */
+        /* Specific animation types */
+        .animate-fade-up {
+            transform: translateY(40px); /* Start slightly lower */
+        }
+        .animate-fade-left {
+            transform: translateX(-50px); /* Start from left */
+        }
+        .animate-fade-right {
+            transform: translateX(50px); /* Start from right */
+        }
+        .animate-zoom-in {
+             transform: scale(0.95); /* Start slightly smaller */
+        }
+
+        /* Visible state (added by JS) */
+        .scroll-animate.is-visible {
+            opacity: 1;
+            transform: translate(0, 0) scale(1); /* Reset transform */
+        }
+
+        /* Scrolling Text Animation (Unchanged) */
         .scrolling-text-container {
             overflow: hidden;
             white-space: nowrap;
@@ -42,45 +57,32 @@
         }
         .scrolling-text {
             display: inline-block;
-            padding-left: 100%; /* Start off-screen */
-            animation: scroll-text 30s linear infinite; /* Adjust duration for speed */
-            font-weight: 600; /* Semibold */
-            font-size: 1.125rem; /* text-lg */
+            padding-left: 100%;
+            animation: scroll-text 35s linear infinite; /* Slightly slower */
+            font-weight: 600;
+            font-size: 1.125rem;
         }
         .scrolling-text span {
-            margin: 0 2rem; /* Spacing between phrases */
+            margin: 0 2.5rem; /* Slightly more space */
         }
         @keyframes scroll-text {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); } /* Move left by its own width */
+            100% { transform: translateX(-100%); }
         }
 
-        /* --- Component Styles --- */
-
-        /* Navigation link hover */
-        nav a:hover {
-            color: #2563eb; /* blue-600 */
-        }
-        /* Button Styles (Canva-like) */
-        .btn {
-            @apply inline-block px-8 py-3 rounded-full font-semibold transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2;
-        }
-        .btn-primary {
-            @apply bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500;
-        }
-        .btn-secondary {
-            @apply bg-gray-200 text-gray-800 hover:bg-gray-300 focus:ring-gray-400;
-        }
-        /* Feature Card Hover */
+        /* --- Component Styles (Unchanged) --- */
+        nav a:hover { color: #2563eb; }
+        .btn { @apply inline-block px-8 py-3 rounded-full font-semibold transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2; }
+        .btn-primary { @apply bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500; }
+        .btn-secondary { @apply bg-gray-200 text-gray-800 hover:bg-gray-300 focus:ring-gray-400; }
         .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px) scale(1.02); /* Enhanced hover */
+            box-shadow: 0 20px 30px -8px rgba(0, 0, 0, 0.1), 0 8px 15px -8px rgba(0, 0, 0, 0.08);
         }
-        /* Header scroll effect */
         .header-scrolled {
-            background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            backdrop-filter: blur(5px);
+            background-color: rgba(255, 255, 255, 0.97); /* Slightly less transparent */
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06);
+            backdrop-filter: blur(8px);
         }
     </style>
 </head>
@@ -113,7 +115,7 @@
 
         <section id="home" class="pt-32 pb-16 md:pt-40 md:pb-24 bg-gradient-to-br from-blue-50 via-white to-indigo-50 min-h-screen flex items-center">
             <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-                <div class="text-center md:text-left animate-on-scroll">
+                <div class="text-center md:text-left scroll-animate animate-fade-left">
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">
                         Visualize Your Growth, <span class="text-blue-600">Showcase Your Skills.</span>
                     </h1>
@@ -125,8 +127,7 @@
                         <a href="#contact" class="btn btn-secondary">Sign Up Now</a>
                     </div>
                 </div>
-                 <div class="animate-on-scroll" style="animation-delay: 0.2s;">
-                     <img src="https://placehold.co/600x500/dbeafe/1e3a8a?text=Skills+Dashboard+Mockup"
+                 <div class="scroll-animate animate-fade-right" style="transition-delay: 0.2s;"> <img src="https://placehold.co/600x500/dbeafe/1e3a8a?text=Skills+Dashboard+Mockup"
                           alt="Skills tracking dashboard illustration"
                           class="mx-auto rounded-lg shadow-2xl w-full max-w-lg h-auto object-cover"
                           onerror="this.onerror=null; this.src='https://placehold.co/600x500/cccccc/333333?text=Image+Not+Found';">
@@ -153,12 +154,12 @@
 
         <section id="features" class="py-20 md:py-28 bg-white">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-16 animate-on-scroll">
+                <div class="text-center mb-16 scroll-animate animate-fade-up">
                     <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4">Powerful Features</h2>
                     <p class="text-lg text-gray-600 max-w-2xl mx-auto">Everything you need to map out and present your skills landscape.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                    <div class="feature-card bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-100 transition duration-300 ease-in-out animate-on-scroll" style="animation-delay: 0.1s;">
+                    <div class="feature-card bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-100 transition duration-300 ease-in-out scroll-animate animate-zoom-in" style="transition-delay: 0.1s;">
                          <img src="https://placehold.co/600x400/ecfdf5/059669?text=Visual+Tracking"
                               alt="Visual Skill Representation"
                               class="mb-6 rounded-lg w-full h-48 object-cover"
@@ -166,7 +167,7 @@
                         <h3 class="text-2xl font-semibold mb-3 text-blue-600">Intuitive Visuals</h3>
                         <p class="text-gray-600">Grasp your progress instantly with clear charts, timelines, and skill maps. See your journey unfold.</p>
                     </div>
-                    <div class="feature-card bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-100 transition duration-300 ease-in-out animate-on-scroll" style="animation-delay: 0.2s;">
+                    <div class="feature-card bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-100 transition duration-300 ease-in-out scroll-animate animate-zoom-in" style="transition-delay: 0.2s;">
                         <img src="https://placehold.co/600x400/eff6ff/3b82f6?text=Easy+Sharing"
                              alt="Easy Sharing Options"
                              class="mb-6 rounded-lg w-full h-48 object-cover"
@@ -174,7 +175,7 @@
                         <h3 class="text-2xl font-semibold mb-3 text-blue-600">Seamless Sharing</h3>
                         <p class="text-gray-600">Generate a unique profile link to share with employers, mentors, or your network. Make a professional impression.</p>
                     </div>
-                    <div class="feature-card bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-100 transition duration-300 ease-in-out animate-on-scroll" style="animation-delay: 0.3s;">
+                    <div class="feature-card bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-100 transition duration-300 ease-in-out scroll-animate animate-zoom-in" style="transition-delay: 0.3s;">
                          <img src="https://placehold.co/600x400/fefce8/ca8a04?text=Goal+Setting"
                               alt="Goal Setting Tools"
                               class="mb-6 rounded-lg w-full h-48 object-cover"
@@ -188,13 +189,13 @@
 
         <section id="about" class="py-20 md:py-28 bg-gradient-to-br from-indigo-50 via-white to-blue-50">
             <div class="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-                <div class="lg:w-1/2 animate-on-scroll">
+                 <div class="lg:w-1/2 scroll-animate animate-fade-left">
                      <img src="https://placehold.co/600x500/e0e7ff/1e3a8a?text=Our+Mission+Visual"
                           alt="Team collaborating on skills"
                           class="rounded-xl shadow-xl w-full h-auto object-cover"
                           onerror="this.onerror=null; this.src='https://placehold.co/600x500/cccccc/333333?text=Image+Not+Found';">
                 </div>
-                <div class="lg:w-1/2 text-center lg:text-left animate-on-scroll" style="animation-delay: 0.2s;">
+                 <div class="lg:w-1/2 text-center lg:text-left scroll-animate animate-fade-right" style="transition-delay: 0.2s;">
                     <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-6">Empowering Your Growth</h2>
                     <p class="text-lg text-gray-600 mb-6">
                         SkillsTrack started with a simple idea: make skill development visible and shareable. We provide the tools for lifelong learners and professionals to own their narrative and showcase their unique capabilities.
@@ -211,7 +212,7 @@
 
         <section id="contact" class="py-20 md:py-28 bg-white">
             <div class="container mx-auto px-6 text-center">
-                <div class="animate-on-scroll">
+                 <div class="scroll-animate animate-fade-up">
                     <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-6">Ready to Start Tracking?</h2>
                     <p class="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
                         Join SkillsTrack today and take the first step towards visualizing your professional journey. Have questions? Reach out!
@@ -247,62 +248,51 @@
         const observerOptions = {
             root: null, // relative to document viewport
             rootMargin: '0px',
-            threshold: 0.1 // trigger when 10% of the element is visible
+            // Adjust threshold slightly if needed, 0.1 means animation starts when 10% visible
+            threshold: 0.1
         };
 
         const observerCallback = (entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    // Optional: Unobserve after animation triggers once
-                    // observer.unobserve(entry.target);
+                    // Optional: Unobserve after animation triggers once to prevent re-animation
+                    observer.unobserve(entry.target);
                 }
-                // Optional: Remove class if you want animation to reverse when scrolling out
-                // else {
-                //     entry.target.classList.remove('is-visible');
-                // }
+                // No 'else' block needed if we unobserve or don't want reverse animation
             });
         };
 
         const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-        // Observe all elements with the class 'animate-on-scroll'
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        // Observe all elements with the class 'scroll-animate'
+        // *** Updated querySelectorAll target ***
+        document.querySelectorAll('.scroll-animate').forEach(el => {
             observer.observe(el);
         });
 
-        // --- Mobile Menu Toggle ---
+        // --- Mobile Menu Toggle (Unchanged) ---
         const menuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mainHeader = document.getElementById('main-header');
+        const mainHeader = document.getElementById('main-header'); // Already defined
 
         menuButton.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent click from propagating to document
+            e.stopPropagation();
             mobileMenu.classList.toggle('hidden');
-            // Optional: Toggle body scroll lock when menu is open
-            // document.body.classList.toggle('overflow-hidden');
+            // Optional: Toggle body scroll lock
+            // document.body.classList.toggle('overflow-hidden', !mobileMenu.classList.contains('hidden'));
         });
 
-        // Close menu when a link inside it is clicked
         mobileMenu.addEventListener('click', (event) => {
             if (event.target.tagName === 'A') {
                 mobileMenu.classList.add('hidden');
-                // document.body.classList.remove('overflow-hidden');
+                 // document.body.classList.remove('overflow-hidden');
             }
         });
 
-         // Close menu if clicking outside of it (optional)
-        // document.addEventListener('click', (event) => {
-        //     if (!mobileMenu.contains(event.target) && !menuButton.contains(event.target) && !mobileMenu.classList.contains('hidden')) {
-        //         mobileMenu.classList.add('hidden');
-        //         document.body.classList.remove('overflow-hidden');
-        //     }
-        // });
-
-
-        // --- Header Style Change on Scroll ---
+        // --- Header Style Change on Scroll (Unchanged) ---
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) { // Add class after scrolling 50px
+            if (window.scrollY > 50) {
                 mainHeader.classList.add('header-scrolled');
             } else {
                 mainHeader.classList.remove('header-scrolled');
