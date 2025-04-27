@@ -5,42 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Skills Tracker</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Adding nice font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <div class="container">
 
+    <!-- Hero Section -->
     <section class="hero">
       <h1>Skills Tracker</h1>
       <p>Welcome to my Skills Tracker! Here, I document my learning journey, projects, and achievements.</p>
+      <a href="#contact" class="btn">Get in Touch</a>
     </section>
 
+    <!-- About Section -->
     <section class="section white">
       <h2>About Me</h2>
-      <p>I’m passionate about technology, self-growth, and constantly acquiring new skills. This platform is a reflection of my progress and dedication toward personal and professional development.</p>
+      <p>I’m passionate about technology, self-growth, and constantly acquiring new skills. This platform reflects my dedication toward personal and professional development.</p>
     </section>
 
+    <!-- Skills Section -->
     <section class="section blue">
       <h2>Skills</h2>
-      <ul class="skills-list">
-        <li>Web Development</li>
-        <li>Arduino Projects</li>
-        <li>Problem Solving</li>
-        <li>Embedded Systems</li>
-        <li>Technical Writing</li>
-      </ul>
+      <div class="skills-list">
+        <span class="skill-badge">Web Development</span>
+        <span class="skill-badge">Arduino Projects</span>
+        <span class="skill-badge">Problem Solving</span>
+        <span class="skill-badge">Embedded Systems</span>
+        <span class="skill-badge">Technical Writing</span>
+      </div>
     </section>
 
+    <!-- Projects Section -->
     <section class="section white">
       <h2>Projects</h2>
       <div class="projects">
-        <div class="project">
+        <div class="project-card">
           <img src="https://via.placeholder.com/300x200.png?text=LED+Blink" alt="Arduino LED Blink">
           <h3>Arduino LED Blink</h3>
           <p>A basic project using Arduino Uno to blink an LED, demonstrating programming and circuit skills.</p>
         </div>
-        <div class="project">
+        <div class="project-card">
           <img src="https://via.placeholder.com/300x200.png?text=Self-Defense+Jacket" alt="Self Defense Jacket">
           <h3>Self-Defense Jacket</h3>
           <p>An innovative wearable jacket designed to deliver an electric shock to an attacker on activation.</p>
@@ -48,11 +54,17 @@
       </div>
     </section>
 
-    <section class="section blue">
+    <!-- Contact Section -->
+    <section id="contact" class="section blue">
       <h2>Contact</h2>
       <p>If you’d like to connect, collaborate, or just chat, feel free to reach out!</p>
       <a href="mailto:your-email@example.com" class="btn">Email Me</a>
     </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© 2025 Skills Tracker. All Rights Reserved.</p>
+    </footer>
 
   </div>
 
