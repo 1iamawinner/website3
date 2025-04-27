@@ -8,171 +8,307 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* Apply Inter font globally */
         body {
             font-family: 'Inter', sans-serif;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
         /* Simple smooth scroll */
         html {
             scroll-behavior: smooth;
         }
-        /* Add subtle animation */
-        .fade-in {
-            animation: fadeIn 1s ease-in-out;
+
+        /* --- Animation Styles --- */
+
+        /* Base state for elements that will animate */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px); /* Start slightly lower */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Visible state (added by JS) */
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-        /* Style for navigation links */
-        nav a {
-            transition: color 0.3s ease;
+
+        /* Scrolling Text Animation */
+        .scrolling-text-container {
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
         }
+        .scrolling-text {
+            display: inline-block;
+            padding-left: 100%; /* Start off-screen */
+            animation: scroll-text 30s linear infinite; /* Adjust duration for speed */
+            font-weight: 600; /* Semibold */
+            font-size: 1.125rem; /* text-lg */
+        }
+        .scrolling-text span {
+            margin: 0 2rem; /* Spacing between phrases */
+        }
+        @keyframes scroll-text {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); } /* Move left by its own width */
+        }
+
+        /* --- Component Styles --- */
+
+        /* Navigation link hover */
         nav a:hover {
-            color: #3b82f6; /* Example hover color - blue-500 */
+            color: #2563eb; /* blue-600 */
         }
-        /* Style for buttons */
+        /* Button Styles (Canva-like) */
         .btn {
-            @apply inline-block px-6 py-3 rounded-lg shadow-md transition duration-300 ease-in-out;
+            @apply inline-block px-8 py-3 rounded-full font-semibold transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2;
         }
         .btn-primary {
-            @apply bg-blue-600 text-white hover:bg-blue-700;
+            @apply bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500;
         }
         .btn-secondary {
-            @apply bg-gray-200 text-gray-800 hover:bg-gray-300;
+            @apply bg-gray-200 text-gray-800 hover:bg-gray-300 focus:ring-gray-400;
         }
-        /* Card hover effect */
+        /* Feature Card Hover */
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+        /* Header scroll effect */
+        .header-scrolled {
+            background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(5px);
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-white text-gray-800">
 
-    <header class="bg-white shadow-sm sticky top-0 z-50">
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-blue-600">SkillsTracker</a>
-            <div class="hidden md:flex space-x-6">
-                <a href="#home" class="text-gray-600 hover:text-blue-600">Home</a>
-                <a href="#features" class="text-gray-600 hover:text-blue-600">Features</a>
-                <a href="#about" class="text-gray-600 hover:text-blue-600">About</a>
-                <a href="#contact" class="text-gray-600 hover:text-blue-600">Contact</a>
+            <a href="#" class="text-3xl font-extrabold text-blue-600">SkillsTrack</a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#home" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
+                <a href="#features" class="text-gray-700 hover:text-blue-600 font-medium">Features</a>
+                <a href="#about" class="text-gray-700 hover:text-blue-600 font-medium">About</a>
+                <a href="#contact" class="text-gray-700 hover:text-blue-600 font-medium">Contact</a>
+                <a href="#contact" class="btn btn-primary text-sm py-2 px-5">Get Started</a>
             </div>
-            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
-                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none z-50">
+                 <svg class="w-7 h-7 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden bg-white py-2">
-            <a href="#home" class="block px-6 py-2 text-gray-600 hover:bg-gray-100">Home</a>
-            <a href="#features" class="block px-6 py-2 text-gray-600 hover:bg-gray-100">Features</a>
-            <a href="#about" class="block px-6 py-2 text-gray-600 hover:bg-gray-100">About</a>
-            <a href="#contact" class="block px-6 py-2 text-gray-600 hover:bg-gray-100">Contact</a>
+         <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-white z-40 flex flex-col items-center justify-center space-y-6">
+            <a href="#home" class="text-2xl text-gray-700 hover:text-blue-600 font-medium">Home</a>
+            <a href="#features" class="text-2xl text-gray-700 hover:text-blue-600 font-medium">Features</a>
+            <a href="#about" class="text-2xl text-gray-700 hover:text-blue-600 font-medium">About</a>
+            <a href="#contact" class="text-2xl text-gray-700 hover:text-blue-600 font-medium">Contact</a>
+             <a href="#contact" class="btn btn-primary mt-4">Get Started</a>
         </div>
     </header>
 
     <main>
 
-        <section id="home" class="bg-gradient-to-r from-blue-50 to-indigo-100 py-20 md:py-32 fade-in">
-            <div class="container mx-auto px-6 text-center">
-                <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4">Track and Showcase Your Skills</h1>
-                <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto">Visually represent your learning journey, professional growth, and achievements in one place.</p>
-                <div class="flex justify-center space-x-4">
-                    <a href="#features" class="btn btn-primary">Learn More</a>
-                    <a href="#contact" class="btn btn-secondary">Get Started</a>
+        <section id="home" class="pt-32 pb-16 md:pt-40 md:pb-24 bg-gradient-to-br from-blue-50 via-white to-indigo-50 min-h-screen flex items-center">
+            <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-center md:text-left animate-on-scroll">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">
+                        Visualize Your Growth, <span class="text-blue-600">Showcase Your Skills.</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-xl mx-auto md:mx-0">
+                        The ultimate platform to track your learning journey, map your competencies, and share your professional achievements effortlessly.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#features" class="btn btn-primary">Explore Features</a>
+                        <a href="#contact" class="btn btn-secondary">Sign Up Now</a>
+                    </div>
                 </div>
-                 <img src="https://placehold.co/800x400/e0e7ff/374151?text=Hero+Image+Placeholder"
-                      alt="Skills tracking dashboard illustration"
-                      class="mt-12 mx-auto rounded-lg shadow-xl w-full max-w-3xl h-auto object-cover"
-                      onerror="this.onerror=null; this.src='https://placehold.co/800x400/e0e7ff/374151?text=Image+Not+Found';">
+                 <div class="animate-on-scroll" style="animation-delay: 0.2s;">
+                     <img src="https://placehold.co/600x500/dbeafe/1e3a8a?text=Skills+Dashboard+Mockup"
+                          alt="Skills tracking dashboard illustration"
+                          class="mx-auto rounded-lg shadow-2xl w-full max-w-lg h-auto object-cover"
+                          onerror="this.onerror=null; this.src='https://placehold.co/600x500/cccccc/333333?text=Image+Not+Found';">
+                 </div>
             </div>
         </section>
 
-        <section id="features" class="py-16 md:py-24 bg-white">
+        <section class="py-4 bg-blue-600 text-white scrolling-text-container">
+            <div class="scrolling-text">
+                <span>Track Certifications</span>
+                <span><i class="fas fa-star mr-2"></i>Showcase Projects</span>
+                <span>Monitor Skill Growth</span>
+                <span><i class="fas fa-chart-line mr-2"></i>Set Learning Goals</span>
+                <span>Share Your Profile</span>
+                <span><i class="fas fa-briefcase mr-2"></i>Boost Career Prospects</span>
+                <span>Track Certifications</span>
+                <span><i class="fas fa-star mr-2"></i>Showcase Projects</span>
+                <span>Monitor Skill Growth</span>
+                <span><i class="fas fa-chart-line mr-2"></i>Set Learning Goals</span>
+                <span>Share Your Profile</span>
+                <span><i class="fas fa-briefcase mr-2"></i>Boost Career Prospects</span>
+            </div>
+        </section>
+
+        <section id="features" class="py-20 md:py-28 bg-white">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">Why Choose SkillsTracker?</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="feature-card bg-gray-50 p-6 rounded-lg shadow-md border border-gray-200 transition duration-300 ease-in-out fade-in" style="animation-delay: 0.2s;">
-                         <img src="https://placehold.co/600x400/d1fae5/1f2937?text=Feature+1+Visual"
+                <div class="text-center mb-16 animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4">Powerful Features</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Everything you need to map out and present your skills landscape.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <div class="feature-card bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-100 transition duration-300 ease-in-out animate-on-scroll" style="animation-delay: 0.1s;">
+                         <img src="https://placehold.co/600x400/ecfdf5/059669?text=Visual+Tracking"
                               alt="Visual Skill Representation"
-                              class="mb-4 rounded-md w-full h-48 object-cover"
-                              onerror="this.onerror=null; this.src='https://placehold.co/600x400/d1fae5/1f2937?text=Image+Not+Found';">
-                        <h3 class="text-xl font-semibold mb-2 text-blue-600">Visual Tracking</h3>
-                        <p class="text-gray-600">See your progress clearly with intuitive charts and timelines. Understand where you started and how far you've come.</p>
+                              class="mb-6 rounded-lg w-full h-48 object-cover"
+                              onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+                        <h3 class="text-2xl font-semibold mb-3 text-blue-600">Intuitive Visuals</h3>
+                        <p class="text-gray-600">Grasp your progress instantly with clear charts, timelines, and skill maps. See your journey unfold.</p>
                     </div>
-                    <div class="feature-card bg-gray-50 p-6 rounded-lg shadow-md border border-gray-200 transition duration-300 ease-in-out fade-in" style="animation-delay: 0.4s;">
-                        <img src="https://placehold.co/600x400/dbeafe/1f2937?text=Feature+2+Sharing"
+                    <div class="feature-card bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-100 transition duration-300 ease-in-out animate-on-scroll" style="animation-delay: 0.2s;">
+                        <img src="https://placehold.co/600x400/eff6ff/3b82f6?text=Easy+Sharing"
                              alt="Easy Sharing Options"
-                             class="mb-4 rounded-md w-full h-48 object-cover"
-                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/dbeafe/1f2937?text=Image+Not+Found';">
-                        <h3 class="text-xl font-semibold mb-2 text-blue-600">Easy Sharing</h3>
-                        <p class="text-gray-600">Share your profile with potential employers, mentors, or colleagues with a unique link. Showcase your capabilities.</p>
+                             class="mb-6 rounded-lg w-full h-48 object-cover"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+                        <h3 class="text-2xl font-semibold mb-3 text-blue-600">Seamless Sharing</h3>
+                        <p class="text-gray-600">Generate a unique profile link to share with employers, mentors, or your network. Make a professional impression.</p>
                     </div>
-                    <div class="feature-card bg-gray-50 p-6 rounded-lg shadow-md border border-gray-200 transition duration-300 ease-in-out fade-in" style="animation-delay: 0.6s;">
-                         <img src="https://placehold.co/600x400/fee2e2/1f2937?text=Feature+3+Goals"
+                    <div class="feature-card bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-100 transition duration-300 ease-in-out animate-on-scroll" style="animation-delay: 0.3s;">
+                         <img src="https://placehold.co/600x400/fefce8/ca8a04?text=Goal+Setting"
                               alt="Goal Setting Tools"
-                              class="mb-4 rounded-md w-full h-48 object-cover"
-                              onerror="this.onerror=null; this.src='https://placehold.co/600x400/fee2e2/1f2937?text=Image+Not+Found';">
-                        <h3 class="text-xl font-semibold mb-2 text-blue-600">Goal Setting</h3>
-                        <p class="text-gray-600">Define your learning objectives and track milestones. Stay motivated and focused on your development path.</p>
+                              class="mb-6 rounded-lg w-full h-48 object-cover"
+                              onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+                        <h3 class="text-2xl font-semibold mb-3 text-blue-600">Goal-Oriented Tracking</h3>
+                        <p class="text-gray-600">Set clear learning objectives, track milestones, and add evidence of achievement. Stay motivated and focused.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="about" class="py-16 md:py-24 bg-gray-100">
-            <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
-                <div class="md:w-1/2 fade-in">
-                     <img src="https://placehold.co/600x450/e5e7eb/374151?text=About+Us+Image"
-                          alt="Team working on skills tracker"
-                          class="rounded-lg shadow-lg w-full h-auto object-cover"
-                          onerror="this.onerror=null; this.src='https://placehold.co/600x450/e5e7eb/374151?text=Image+Not+Found';">
+        <section id="about" class="py-20 md:py-28 bg-gradient-to-br from-indigo-50 via-white to-blue-50">
+            <div class="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                <div class="lg:w-1/2 animate-on-scroll">
+                     <img src="https://placehold.co/600x500/e0e7ff/1e3a8a?text=Our+Mission+Visual"
+                          alt="Team collaborating on skills"
+                          class="rounded-xl shadow-xl w-full h-auto object-cover"
+                          onerror="this.onerror=null; this.src='https://placehold.co/600x500/cccccc/333333?text=Image+Not+Found';">
                 </div>
-                <div class="md:w-1/2 fade-in" style="animation-delay: 0.2s;">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">About SkillsTracker</h2>
-                    <p class="text-gray-600 mb-4">We believe that everyone's learning journey is unique and valuable. SkillsTracker was created to provide a simple, yet powerful tool for individuals to document, visualize, and share their skills and growth.</p>
-                    <p class="text-gray-600 mb-4">Our mission is to empower lifelong learners and professionals to take control of their development narrative and showcase their achievements effectively.</p>
-                    <a href="#" class="text-blue-600 hover:underline font-medium">Learn more about our mission</a>
+                <div class="lg:w-1/2 text-center lg:text-left animate-on-scroll" style="animation-delay: 0.2s;">
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-6">Empowering Your Growth</h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        SkillsTrack started with a simple idea: make skill development visible and shareable. We provide the tools for lifelong learners and professionals to own their narrative and showcase their unique capabilities.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8">
+                        Our mission is to foster a culture of continuous improvement and help individuals achieve their career aspirations.
+                    </p>
+                    <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold text-lg group">
+                        Learn More About Us <span class="inline-block transition-transform duration-200 group-hover:translate-x-1">&rarr;</span>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="py-16 md:py-24 bg-white">
+        <section id="contact" class="py-20 md:py-28 bg-white">
             <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Get in Touch</h2>
-                <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Have questions or feedback? We'd love to hear from you. Reach out and let us know how we can help you track your skills.</p>
-                <a href="mailto:contact@skillstracker.example.com" class="btn btn-primary">Contact Us</a>
-                </div>
+                <div class="animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-6">Ready to Start Tracking?</h2>
+                    <p class="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
+                        Join SkillsTrack today and take the first step towards visualizing your professional journey. Have questions? Reach out!
+                    </p>
+                    <a href="mailto:contact@skillstrack.example.com" class="btn btn-primary text-lg">
+                        Contact Us Now
+                    </a>
+                     </div>
+            </div>
         </section>
 
     </main>
 
-    <footer class="bg-gray-800 text-gray-300 py-8">
+    <footer class="bg-gray-900 text-gray-400 py-12">
         <div class="container mx-auto px-6 text-center">
-            <p>&copy; 2025 SkillsTracker. All rights reserved.</p>
-            <div class="mt-4 space-x-4">
-                <a href="#" class="hover:text-white">Privacy Policy</a>
-                <a href="#" class="hover:text-white">Terms of Service</a>
+            <a href="#" class="text-2xl font-bold text-white mb-4 inline-block">SkillsTrack</a>
+            <nav class="flex justify-center space-x-6 mb-6">
+                <a href="#home" class="hover:text-white">Home</a>
+                <a href="#features" class="hover:text-white">Features</a>
+                <a href="#about" class="hover:text-white">About</a>
+                <a href="#contact" class="hover:text-white">Contact</a>
+            </nav>
+            <div class="text-sm mb-4">
+                <a href="#" class="hover:text-white mx-2">Privacy Policy</a> |
+                <a href="#" class="hover:text-white mx-2">Terms of Service</a>
             </div>
+            <p class="text-sm">&copy; 2025 SkillsTrack. All rights reserved. Built with passion.</p>
         </div>
     </footer>
 
     <script>
-        const menuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
+        // --- Intersection Observer for Scroll Animations ---
+        const observerOptions = {
+            root: null, // relative to document viewport
+            rootMargin: '0px',
+            threshold: 0.1 // trigger when 10% of the element is visible
+        };
 
-        menuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Optional: Unobserve after animation triggers once
+                    // observer.unobserve(entry.target);
+                }
+                // Optional: Remove class if you want animation to reverse when scrolling out
+                // else {
+                //     entry.target.classList.remove('is-visible');
+                // }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+        // Observe all elements with the class 'animate-on-scroll'
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
         });
 
-        // Close menu when a link is clicked (optional)
+        // --- Mobile Menu Toggle ---
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mainHeader = document.getElementById('main-header');
+
+        menuButton.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent click from propagating to document
+            mobileMenu.classList.toggle('hidden');
+            // Optional: Toggle body scroll lock when menu is open
+            // document.body.classList.toggle('overflow-hidden');
+        });
+
+        // Close menu when a link inside it is clicked
         mobileMenu.addEventListener('click', (event) => {
             if (event.target.tagName === 'A') {
                 mobileMenu.classList.add('hidden');
+                // document.body.classList.remove('overflow-hidden');
             }
         });
+
+         // Close menu if clicking outside of it (optional)
+        // document.addEventListener('click', (event) => {
+        //     if (!mobileMenu.contains(event.target) && !menuButton.contains(event.target) && !mobileMenu.classList.contains('hidden')) {
+        //         mobileMenu.classList.add('hidden');
+        //         document.body.classList.remove('overflow-hidden');
+        //     }
+        // });
+
+
+        // --- Header Style Change on Scroll ---
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) { // Add class after scrolling 50px
+                mainHeader.classList.add('header-scrolled');
+            } else {
+                mainHeader.classList.remove('header-scrolled');
+            }
+        });
+
     </script>
 
 </body>
