@@ -3,303 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Skills Tracker - Showcase Your Journey</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        /* Apply Inter font globally */
-        body {
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden; /* Prevent horizontal scroll */
-        }
-        /* Simple smooth scroll */
-        html {
-            scroll-behavior: smooth;
-        }
+    <title>My Skills Tracker</title>
+    <link rel="stylesheet" href="styles.css">
 
-        /* --- Flowy Animation Styles --- */
-        /* Common class for elements that will animate on scroll */
-        .scroll-animate {
-            opacity: 0;
-            transition: opacity 1s cubic-bezier(0.25, 0.1, 0.25, 1),
-                        transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
-            /* Longer duration, custom cubic-bezier for flowy effect */
-        }
+    <!-- Google Fonts: Poppins for clean modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 
-        /* Specific animation types */
-        .animate-fade-up {
-            transform: translateY(40px); /* Start slightly lower */
-        }
-        .animate-fade-left {
-            transform: translateX(-50px); /* Start from left */
-        }
-        .animate-fade-right {
-            transform: translateX(50px); /* Start from right */
-        }
-        .animate-zoom-in {
-             transform: scale(0.95); /* Start slightly smaller */
-        }
-
-        /* Visible state (added by JS) */
-        .scroll-animate.is-visible {
-            opacity: 1;
-            transform: translate(0, 0) scale(1); /* Reset transform */
-        }
-
-        /* Scrolling Text Animation (Unchanged) */
-        .scrolling-text-container {
-            overflow: hidden;
-            white-space: nowrap;
-            box-sizing: border-box;
-        }
-        .scrolling-text {
-            display: inline-block;
-            padding-left: 100%;
-            animation: scroll-text 35s linear infinite; /* Slightly slower */
-            font-weight: 600;
-            font-size: 1.125rem;
-        }
-        .scrolling-text span {
-            margin: 0 2.5rem; /* Slightly more space */
-        }
-        @keyframes scroll-text {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
-        }
-
-        /* --- Component Styles (Unchanged) --- */
-        nav a:hover { color: #2563eb; }
-        .btn { @apply inline-block px-8 py-3 rounded-full font-semibold transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2; }
-        .btn-primary { @apply bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500; }
-        .btn-secondary { @apply bg-gray-200 text-gray-800 hover:bg-gray-300 focus:ring-gray-400; }
-        .feature-card:hover {
-            transform: translateY(-10px) scale(1.02); /* Enhanced hover */
-            box-shadow: 0 20px 30px -8px rgba(0, 0, 0, 0.1), 0 8px 15px -8px rgba(0, 0, 0, 0.08);
-        }
-        .header-scrolled {
-            background-color: rgba(255, 255, 255, 0.97); /* Slightly less transparent */
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06);
-            backdrop-filter: blur(8px);
-        }
-    </style>
+    <!-- Animate on Scroll Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
-<body class="bg-white text-gray-800">
-
-    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-3xl font-extrabold text-blue-600">SkillsTrack</a>
-            <div class="hidden md:flex space-x-8 items-center">
-                <a href="#home" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
-                <a href="#features" class="text-gray-700 hover:text-blue-600 font-medium">Features</a>
-                <a href="#about" class="text-gray-700 hover:text-blue-600 font-medium">About</a>
-                <a href="#contact" class="text-gray-700 hover:text-blue-600 font-medium">Contact</a>
-                <a href="#contact" class="btn btn-primary text-sm py-2 px-5">Get Started</a>
-            </div>
-            <button id="mobile-menu-button" class="md:hidden focus:outline-none z-50">
-                 <svg class="w-7 h-7 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
-        </nav>
-         <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-white z-40 flex flex-col items-center justify-center space-y-6">
-            <a href="#home" class="text-2xl text-gray-700 hover:text-blue-600 font-medium">Home</a>
-            <a href="#features" class="text-2xl text-gray-700 hover:text-blue-600 font-medium">Features</a>
-            <a href="#about" class="text-2xl text-gray-700 hover:text-blue-600 font-medium">About</a>
-            <a href="#contact" class="text-2xl text-gray-700 hover:text-blue-600 font-medium">Contact</a>
-             <a href="#contact" class="btn btn-primary mt-4">Get Started</a>
-        </div>
+<body>
+    <header class="hero" data-aos="fade-down">
+        <h1>MY SKILLS TRACKER</h1>
     </header>
 
-    <main>
+    <section class="section" data-aos="fade-up">
+        <h2>Certifications</h2>
+        <p>Arduino Fundamentals Certification - Arduino</p>
+    </section>
 
-        <section id="home" class="pt-32 pb-16 md:pt-40 md:pb-24 bg-gradient-to-br from-blue-50 via-white to-indigo-50 min-h-screen flex items-center">
-            <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-                <div class="text-center md:text-left scroll-animate animate-fade-left">
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">
-                        Visualize Your Growth, <span class="text-blue-600">Showcase Your Skills.</span>
-                    </h1>
-                    <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-xl mx-auto md:mx-0">
-                        The ultimate platform to track your learning journey, map your competencies, and share your professional achievements effortlessly.
-                    </p>
-                    <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="#features" class="btn btn-primary">Explore Features</a>
-                        <a href="#contact" class="btn btn-secondary">Sign Up Now</a>
-                    </div>
-                </div>
-                 <div class="scroll-animate animate-fade-right" style="transition-delay: 0.2s;"> <img src="https://placehold.co/600x500/dbeafe/1e3a8a?text=Skills+Dashboard+Mockup"
-                          alt="Skills tracking dashboard illustration"
-                          class="mx-auto rounded-lg shadow-2xl w-full max-w-lg h-auto object-cover"
-                          onerror="this.onerror=null; this.src='https://placehold.co/600x500/cccccc/333333?text=Image+Not+Found';">
-                 </div>
-            </div>
-        </section>
+    <section class="section" data-aos="fade-up">
+        <h2>Workshops</h2>
+        <p>• Hands-on Arduino Workshop - XYZ College</p>
+    </section>
 
-        <section class="py-4 bg-blue-600 text-white scrolling-text-container">
-            <div class="scrolling-text">
-                <span>Track Certifications</span>
-                <span><i class="fas fa-star mr-2"></i>Showcase Projects</span>
-                <span>Monitor Skill Growth</span>
-                <span><i class="fas fa-chart-line mr-2"></i>Set Learning Goals</span>
-                <span>Share Your Profile</span>
-                <span><i class="fas fa-briefcase mr-2"></i>Boost Career Prospects</span>
-                <span>Track Certifications</span>
-                <span><i class="fas fa-star mr-2"></i>Showcase Projects</span>
-                <span>Monitor Skill Growth</span>
-                <span><i class="fas fa-chart-line mr-2"></i>Set Learning Goals</span>
-                <span>Share Your Profile</span>
-                <span><i class="fas fa-briefcase mr-2"></i>Boost Career Prospects</span>
-            </div>
-        </section>
+    <section class="section" data-aos="fade-up">
+        <h2>Skills</h2>
+        <p>• Arduino Programming<br>
+           • Embedded Systems Basics<br>
+           • Electronics Prototyping
+        </p>
+    </section>
 
-        <section id="features" class="py-20 md:py-28 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16 scroll-animate animate-fade-up">
-                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4">Powerful Features</h2>
-                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Everything you need to map out and present your skills landscape.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                    <div class="feature-card bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-100 transition duration-300 ease-in-out scroll-animate animate-zoom-in" style="transition-delay: 0.1s;">
-                         <img src="https://placehold.co/600x400/ecfdf5/059669?text=Visual+Tracking"
-                              alt="Visual Skill Representation"
-                              class="mb-6 rounded-lg w-full h-48 object-cover"
-                              onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
-                        <h3 class="text-2xl font-semibold mb-3 text-blue-600">Intuitive Visuals</h3>
-                        <p class="text-gray-600">Grasp your progress instantly with clear charts, timelines, and skill maps. See your journey unfold.</p>
-                    </div>
-                    <div class="feature-card bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-100 transition duration-300 ease-in-out scroll-animate animate-zoom-in" style="transition-delay: 0.2s;">
-                        <img src="https://placehold.co/600x400/eff6ff/3b82f6?text=Easy+Sharing"
-                             alt="Easy Sharing Options"
-                             class="mb-6 rounded-lg w-full h-48 object-cover"
-                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
-                        <h3 class="text-2xl font-semibold mb-3 text-blue-600">Seamless Sharing</h3>
-                        <p class="text-gray-600">Generate a unique profile link to share with employers, mentors, or your network. Make a professional impression.</p>
-                    </div>
-                    <div class="feature-card bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-100 transition duration-300 ease-in-out scroll-animate animate-zoom-in" style="transition-delay: 0.3s;">
-                         <img src="https://placehold.co/600x400/fefce8/ca8a04?text=Goal+Setting"
-                              alt="Goal Setting Tools"
-                              class="mb-6 rounded-lg w-full h-48 object-cover"
-                              onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
-                        <h3 class="text-2xl font-semibold mb-3 text-blue-600">Goal-Oriented Tracking</h3>
-                        <p class="text-gray-600">Set clear learning objectives, track milestones, and add evidence of achievement. Stay motivated and focused.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <section class="section" data-aos="fade-up">
+        <h2>Projects</h2>
+        <p>• Smart Self Defense Jacket<br>
+           • Flexible Solar Plastic Sheet
+        </p>
+    </section>
 
-        <section id="about" class="py-20 md:py-28 bg-gradient-to-br from-indigo-50 via-white to-blue-50">
-            <div class="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-                 <div class="lg:w-1/2 scroll-animate animate-fade-left">
-                     <img src="https://placehold.co/600x500/e0e7ff/1e3a8a?text=Our+Mission+Visual"
-                          alt="Team collaborating on skills"
-                          class="rounded-xl shadow-xl w-full h-auto object-cover"
-                          onerror="this.onerror=null; this.src='https://placehold.co/600x500/cccccc/333333?text=Image+Not+Found';">
-                </div>
-                 <div class="lg:w-1/2 text-center lg:text-left scroll-animate animate-fade-right" style="transition-delay: 0.2s;">
-                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-6">Empowering Your Growth</h2>
-                    <p class="text-lg text-gray-600 mb-6">
-                        SkillsTrack started with a simple idea: make skill development visible and shareable. We provide the tools for lifelong learners and professionals to own their narrative and showcase their unique capabilities.
-                    </p>
-                    <p class="text-lg text-gray-600 mb-8">
-                        Our mission is to foster a culture of continuous improvement and help individuals achieve their career aspirations.
-                    </p>
-                    <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold text-lg group">
-                        Learn More About Us <span class="inline-block transition-transform duration-200 group-hover:translate-x-1">&rarr;</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="py-20 md:py-28 bg-white">
-            <div class="container mx-auto px-6 text-center">
-                 <div class="scroll-animate animate-fade-up">
-                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-6">Ready to Start Tracking?</h2>
-                    <p class="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
-                        Join SkillsTrack today and take the first step towards visualizing your professional journey. Have questions? Reach out!
-                    </p>
-                    <a href="mailto:contact@skillstrack.example.com" class="btn btn-primary text-lg">
-                        Contact Us Now
-                    </a>
-                     </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="bg-gray-900 text-gray-400 py-12">
-        <div class="container mx-auto px-6 text-center">
-            <a href="#" class="text-2xl font-bold text-white mb-4 inline-block">SkillsTrack</a>
-            <nav class="flex justify-center space-x-6 mb-6">
-                <a href="#home" class="hover:text-white">Home</a>
-                <a href="#features" class="hover:text-white">Features</a>
-                <a href="#about" class="hover:text-white">About</a>
-                <a href="#contact" class="hover:text-white">Contact</a>
-            </nav>
-            <div class="text-sm mb-4">
-                <a href="#" class="hover:text-white mx-2">Privacy Policy</a> |
-                <a href="#" class="hover:text-white mx-2">Terms of Service</a>
-            </div>
-            <p class="text-sm">&copy; 2025 SkillsTrack. All rights reserved. Built with passion.</p>
-        </div>
+    <footer data-aos="fade-up">
+        <p>Made with ❤️ by R.Shriya</p>
     </footer>
 
+    <!-- Animate on Scroll Library JS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // --- Intersection Observer for Scroll Animations ---
-        const observerOptions = {
-            root: null, // relative to document viewport
-            rootMargin: '0px',
-            // Adjust threshold slightly if needed, 0.1 means animation starts when 10% visible
-            threshold: 0.1
-        };
-
-        const observerCallback = (entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    // Optional: Unobserve after animation triggers once to prevent re-animation
-                    observer.unobserve(entry.target);
-                }
-                // No 'else' block needed if we unobserve or don't want reverse animation
-            });
-        };
-
-        const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-        // Observe all elements with the class 'scroll-animate'
-        // *** Updated querySelectorAll target ***
-        document.querySelectorAll('.scroll-animate').forEach(el => {
-            observer.observe(el);
-        });
-
-        // --- Mobile Menu Toggle (Unchanged) ---
-        const menuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mainHeader = document.getElementById('main-header'); // Already defined
-
-        menuButton.addEventListener('click', (e) => {
-            e.stopPropagation();
-            mobileMenu.classList.toggle('hidden');
-            // Optional: Toggle body scroll lock
-            // document.body.classList.toggle('overflow-hidden', !mobileMenu.classList.contains('hidden'));
-        });
-
-        mobileMenu.addEventListener('click', (event) => {
-            if (event.target.tagName === 'A') {
-                mobileMenu.classList.add('hidden');
-                 // document.body.classList.remove('overflow-hidden');
-            }
-        });
-
-        // --- Header Style Change on Scroll (Unchanged) ---
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                mainHeader.classList.add('header-scrolled');
-            } else {
-                mainHeader.classList.remove('header-scrolled');
-            }
-        });
-
+      AOS.init({
+        duration: 1000, // Animation duration in ms
+        once: true // Only animate once
+      });
     </script>
-
 </body>
 </html>
