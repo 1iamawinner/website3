@@ -6,52 +6,59 @@
     <title>My Skills Tracker</title>
     <link rel="stylesheet" href="styles.css">
 
-    <!-- Google Fonts: Poppins for clean modern look -->
+    <!-- Google Fonts: Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- Animate on Scroll Library -->
+    <!-- AOS Animation Library -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
-    <header class="hero" data-aos="fade-down">
-        <h1>MY SKILLS TRACKER</h1>
-    </header>
 
-    <section class="section" data-aos="fade-up">
-        <h2>Certifications</h2>
-        <p>Arduino Fundamentals Certification - Arduino</p>
-    </section>
+    <div class="container">
 
-    <section class="section" data-aos="fade-up">
-        <h2>Workshops</h2>
-        <p>• Hands-on Arduino Workshop - XYZ College</p>
-    </section>
+        <header class="hero" data-aos="fade-down">
+            <h1>MY SKILLS TRACKER</h1>
+        </header>
 
-    <section class="section" data-aos="fade-up">
-        <h2>Skills</h2>
-        <p>• Arduino Programming<br>
-           • Embedded Systems Basics<br>
-           • Electronics Prototyping
-        </p>
-    </section>
+        <main>
+            <section class="section" data-aos="fade-up">
+                <h2>Certifications</h2>
+                <p>Arduino Fundamentals Certification - Arduino</p>
+            </section>
 
-    <section class="section" data-aos="fade-up">
-        <h2>Projects</h2>
-        <p>• Smart Self Defense Jacket<br>
-           • Flexible Solar Plastic Sheet
-        </p>
-    </section>
+            <section class="section" data-aos="fade-up">
+                <h2>Workshops</h2>
+                <p>• Hands-on Arduino Workshop - XYZ College</p>
+            </section>
 
-    <footer data-aos="fade-up">
-        <p>Made with ❤️ by R.Shriya</p>
-    </footer>
+            <section class="section" data-aos="fade-up">
+                <h2>Skills</h2>
+                <p>• Arduino Programming<br>
+                   • Embedded Systems Basics<br>
+                   • Electronics Prototyping
+                </p>
+            </section>
 
-    <!-- Animate on Scroll Library JS -->
+            <section class="section" data-aos="fade-up">
+                <h2>Projects</h2>
+                <p>• Smart Self Defense Jacket<br>
+                   • Flexible Solar Plastic Sheet
+                </p>
+            </section>
+        </main>
+
+        <footer data-aos="fade-up">
+            <p>Made with ❤️ by R.Shriya</p>
+        </footer>
+
+    </div>
+
+    <!-- AOS Animation -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
       AOS.init({
-        duration: 1000, // Animation duration in ms
-        once: true // Only animate once
+        duration: 1000,
+        once: true
       });
     </script>
 </body>
