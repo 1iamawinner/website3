@@ -3,77 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>My Skills Tracker</title>
+  <title>Skills Tracker</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Navbar -->
-  <header class="navbar">
-    <div class="logo">MySkillsTracker</div>
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
+  <div class="container">
+
+    <section class="hero">
+      <h1>Skills Tracker</h1>
+      <p>Welcome to my Skills Tracker! Here, I document my learning journey, projects, and achievements.</p>
+    </section>
+
+    <section class="section white">
+      <h2>About Me</h2>
+      <p>I’m passionate about technology, self-growth, and constantly acquiring new skills. This platform is a reflection of my progress and dedication toward personal and professional development.</p>
+    </section>
+
+    <section class="section blue">
+      <h2>Skills</h2>
+      <ul class="skills-list">
+        <li>Web Development</li>
+        <li>Arduino Projects</li>
+        <li>Problem Solving</li>
+        <li>Embedded Systems</li>
+        <li>Technical Writing</li>
       </ul>
-    </nav>
-  </header>
+    </section>
 
-  <!-- Hero Section -->
-  <section id="home" class="hero">
-    <h1>Welcome to My Skills Tracker</h1>
-    <p>Discover my learning journey and projects.</p>
-    <a href="#about" class="btn">Learn More</a>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="section">
-    <h2>About Me</h2>
-    <p>I am passionate about tracking my skills and showcasing my journey through various projects and certifications.</p>
-  </section>
-
-  <!-- Skills Section -->
-  <section id="skills" class="section light-bg">
-    <h2>Skills</h2>
-    <ul class="skills-list">
-      <li>Web Development</li>
-      <li>Arduino Projects</li>
-      <li>Embedded Systems</li>
-      <li>Problem Solving</li>
-      <li>Project Management</li>
-    </ul>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="section">
-    <h2>Projects</h2>
-    <div class="projects">
-      <div class="project-card">
-        <h3>Arduino LED Blink</h3>
-        <p>A simple project showcasing LED blinking using Arduino Uno and code optimization techniques.</p>
+    <section class="section white">
+      <h2>Projects</h2>
+      <div class="projects">
+        <div class="project">
+          <h3>Arduino LED Blink</h3>
+          <p>A basic project using Arduino Uno to blink an LED, demonstrating programming and circuit skills.</p>
+        </div>
+        <div class="project">
+          <h3>Self-Defense Jacket</h3>
+          <p>An innovative wearable jacket designed to deliver an electric shock to an attacker on activation.</p>
+        </div>
       </div>
-      <div class="project-card">
-        <h3>Self-Defense Jacket</h3>
-        <p>Innovative jacket delivering electric shock to an attacker for women's safety.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="section light-bg">
-    <h2>Contact Me</h2>
-    <p>Want to collaborate or know more? Get in touch!</p>
-    <a href="mailto:your-email@example.com" class="btn">Email Me</a>
-  </section>
+    <section class="section blue">
+      <h2>Contact</h2>
+      <p>If you’d like to connect, collaborate, or just chat, feel free to reach out!</p>
+      <a href="mailto:your-email@example.com" class="btn">Email Me</a>
+    </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>© 2025 MySkillsTracker | Designed with ❤️</p>
-  </footer>
+  </div>
 
 </body>
 </html>
