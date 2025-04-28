@@ -2,57 +2,52 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Skills Tracker</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Skills Tracker</title>
+  
+  <link rel="stylesheet" href="styles.css"> <!-- Linking to the external CSS file -->
 </head>
 <body>
 
-  <div class="container">
+  <!-- Horizontal Arc -->
+  <div class="horizontal-arc"></div>
 
-    <section class="hero">
-      <h1>Skills Tracker</h1>
-      <p>Welcome to my Skills Tracker! Here, I document my learning journey, projects, and achievements.</p>
-    </section>
+  <header>
+    <!-- Animated Arc -->
+    <div class="top-arc">
+      <svg viewBox="0 0 100 20" preserveAspectRatio="none">
+        <path d="M0,20 C20,0 70,0 100,20 L100,0 L0,0 Z" fill="none" stroke="black" stroke-width="3"/>
+      </svg>
+    </div>
+    
+    <div class="container">
+      <h1>My Skills Tracker</h1>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <section class="section white">
+  <section id="hero" class="hero">
+    <div class="container">
+      <h2>Welcome!</h2>
+      <p>A space to track and showcase my skills and experiences.</p>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="container">
       <h2>About Me</h2>
-      <p>I’m passionate about technology, self-growth, and constantly acquiring new skills. This platform is a reflection of my progress and dedication toward personal and professional development.</p>
-    </section>
+      <p>Content about you goes here...</p>
+    </div>
+  </section>
 
-    <section class="section blue">
-      <h2>Skills</h2>
-      <ul class="skills-list">
-        <li>Web Development</li>
-        <li>Arduino Projects</li>
-        <li>Problem Solving</li>
-        <li>Embedded Systems</li>
-        <li>Technical Writing</li>
-      </ul>
-    </section>
-
-    <section class="section white">
-      <h2>Projects</h2>
-      <div class="projects">
-        <div class="project">
-          <h3>Arduino LED Blink</h3>
-          <p>A basic project using Arduino Uno to blink an LED, demonstrating programming and circuit skills.</p>
-        </div>
-        <div class="project">
-          <h3>Self-Defense Jacket</h3>
-          <p>An innovative wearable jacket designed to deliver an electric shock to an attacker on activation.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section blue">
-      <h2>Contact</h2>
-      <p>If you’d like to connect, collaborate, or just chat, feel free to reach out!</p>
-      <a href="mailto:your-email@example.com" class="btn">Email Me</a>
-    </section>
-
-  </div>
+  <!-- Rest of the sections like Skills, Projects, etc. -->
 
 </body>
 </html>
